@@ -3,9 +3,72 @@
 <%= form_for @song  do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
-  <br />
+  <br>
+  <%= f.label :artist_name %>
+  <%= f.text_field :artist_name%>
+  <br>
+  <%= f.collection_select :genre, Genre.all, :name, :name %>
 
+  <%= form_for @song do |f|%>
+  <input name="song[song_notes][]" >
+  <input name="song[song_notes][]" >
+  <input name="song[song_notes][]" >
+  <input type="submit" value="Submit">
   <%= f.submit %>
+<% end %>
 <% end %>
 
 
+
+
+
+<%# <%= form_for @category do |f|
+  <input name="category[post_ids][]">
+  <input name="category[post_ids][]">
+  <input name="category[post_ids][]">
+  <input type="submit" value="Submit">
+<% end %> 
+ 
+<%# # app/models/category.rb %>
+ <%# class Category < ActiveRecord::Base
+   def post_ids=(ids)
+     ids.each do |id|
+       post = Post.find(id)
+       self.posts << post
+     end
+   end
+end %>
+
+
+<%# # app/controllers/categories_controller.rb
+class CategoriesController < ApplicationController
+  def create
+    Category.create(category_params)
+  end
+ 
+  private
+ 
+  def category_params
+    params.require(:category).permit(:name, post_ids: [])
+  end
+end %>
+
+
+
+
+<%# <h1>Create a Song</h1>
+
+<%= form_for @song  do |f| %>
+  <%# <%= f.label :title %>
+  <%# <%= f.text_field :title %> %>
+  <%# <%= f.label :artist_name %> %>
+  <%# <%= f.text_field :artist_name %> %>
+  <%# <%= f.collection_select :genre_id, Genre.all, :id, :name %> %>
+  <%# <input name="song[note_contents][]" id="song_notes_1"> %>
+  <%# <input name="song[note_contents][]" id="song_notes_2"> %>
+  <%# <input name="song[note_contents][]" id="song_notes_3"> %>
+  <%# <input type="submit" value="Submit"> %>
+  <%# <br /> %>
+
+  <%# <%= f.submit %> %>
+<%# <% end %> %> %> %>
